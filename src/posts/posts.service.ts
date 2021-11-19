@@ -3,11 +3,12 @@ import { CreatePostDto } from './dto/create-post.dto';
 import { FilesService } from './../files/files.service';
 import { Post } from './post.model';
 import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class PostsService {
 
-  constructor(@Inject('POST_REPOSITORY') private postRepository: Repository<Post>,
+  constructor(@InjectRepository(Post) private postRepository: Repository<Post>,
     private fileService: FilesService) { }
 
   async create(dto: CreatePostDto, image: any) {

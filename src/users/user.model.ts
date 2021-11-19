@@ -1,7 +1,8 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { Post } from "src/posts/post.model";
 import { Role } from './../roles/role.model';
-import { Entity, ManyToMany, ObjectIdColumn, Column, OneToMany, JoinTable } from "typeorm";
+import { Entity, ManyToMany, ObjectIdColumn, Column, OneToMany, JoinTable, PrimaryGeneratedColumn } from "typeorm";
+import { UserRoles } from './../roles/user-roles.model';
 
 
 @Entity({ name: 'users' })
@@ -26,10 +27,9 @@ export class User {
   @Column({ nullable: true })
   banReason: string;
 
-  @ManyToMany(() => Role, role => role.users)
-  @JoinTable()
   roles: Role[];
 
-  @OneToMany(() => Post, post => post.userId)
-  posts: Post[]
+  // @ManyToMany(() => Role, role => role.users)
+  // @JoinTable()
+  // roles: Role[]
 }

@@ -5,7 +5,6 @@ import { UsersModule } from './users/users.module';
 import { RolesModule } from './roles/roles.module';
 import { Role } from './roles/role.model';
 import { UserRoles } from './roles/user-roles.model';
-import { AuthModule } from './auth/auth.module';
 import { PostsModule } from './posts/posts.module';
 import { Post } from "./posts/post.model";
 import { FilesModule } from './files/files.module';
@@ -24,17 +23,17 @@ import { TypeOrmModule } from "@nestjs/typeorm";
       rootPath: path.resolve(__dirname, 'static')
     }),
     TypeOrmModule.forRoot({
-      "type": "mongodb",
-      "host": "localhost",
-      "port": 27017,
-      "username": "root",
-      "password": "root",
-      "database": "user_db",
-      "entities": [User, Role, Post,],
-      "synchronize": true
+      type: 'mongodb',
+      host: 'localhost',
+      port: 27017,
+      database: 'user_db',
+      useNewUrlParser: true,
+      entities: [path.join(__dirname, '**/**.model{.ts,.js}')],
+      autoLoadEntities: true,
+      useUnifiedTopology: true
     }),
     UsersModule,
-    //RolesModule,
+    RolesModule,
     //AuthModule,
     //PostsModule,
     //FilesModule,

@@ -1,6 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { User } from './../users/user.model';
 import { Entity, ManyToMany, ObjectIdColumn, Column, OneToMany, JoinTable } from "typeorm";
+import { UserRoles } from './user-roles.model';
 
 
 @Entity({ name: 'roles' })
@@ -17,7 +18,7 @@ export class Role {
   @Column({ nullable: true })
   description: string;
 
-  @ManyToMany(() => User, user => user.roles)
-  @JoinTable()
-  users: User[];
+
+  // @ManyToMany(() => User, user => user.roles)
+  // users: User[]
 }

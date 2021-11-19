@@ -1,11 +1,14 @@
-import { User } from '../users/user.model';
-import { Role } from './role.model';
+import { Column, ObjectIdColumn } from 'typeorm';
+import { Entity } from 'typeorm';
 
-
+@Entity()
 export class UserRoles {
+  @ObjectIdColumn()
   id: number;
 
+  @Column()
   roleId: number;
 
-  userId: number;
+  @Column()
+  userId: number
 }

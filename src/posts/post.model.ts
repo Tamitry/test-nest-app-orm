@@ -18,6 +18,4 @@ export class Post {
   @Column()
   userId: number;
 
-  @ManyToOne(() => User, user => user.posts)
-  user: User;
 }
